@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34928.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autumn.Wasm", "Autumn.Wasm\Autumn.Wasm.csproj", "{39431C37-6605-477D-978C-8B4946E36CF5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autumn.Contract", "Autumn.Contract\Autumn.Contract.csproj", "{07E1368A-3579-4FE8-A6DC-44E144E4F34A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{39431C37-6605-477D-978C-8B4946E36CF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39431C37-6605-477D-978C-8B4946E36CF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39431C37-6605-477D-978C-8B4946E36CF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39431C37-6605-477D-978C-8B4946E36CF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07E1368A-3579-4FE8-A6DC-44E144E4F34A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07E1368A-3579-4FE8-A6DC-44E144E4F34A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07E1368A-3579-4FE8-A6DC-44E144E4F34A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07E1368A-3579-4FE8-A6DC-44E144E4F34A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D8F8CAA0-4390-4F8D-B13D-5D0F6586CBB3}
+	EndGlobalSection
+EndGlobal

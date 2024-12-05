@@ -1,6 +1,6 @@
 ﻿namespace Autumn.Contract.Entities
 {
-    internal class ProjectEntity
+    public class ProjectEntity
     {
         public required string ProjectTitle { get; set; }
 

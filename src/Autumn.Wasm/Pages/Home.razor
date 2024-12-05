@@ -1,7 +1,70 @@
 ﻿@page "/"
+@using Autumn.Wasm.ViewModel
+@using Blazing.Mvvm.Components
+
+@inherits MvvmComponentBase<HomeViewModel>
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<MudContainer MaxWidth="MaxWidth.Large">
+    <MudStack AlignItems="AlignItems.Center">
+        <MudText Typo="Typo.h3" Class="fw-bold mt-5" Align="Align.Center" Color="Color.Primary">@ViewModel!.Profile?.Role</MudText>
+        <MudText Style="margin-left: 150px; margin-right: 150px;" Align="Align.Center">@ViewModel!.Profile?.RoleDescription</MudText>
+        <MudImage Src="images/home_banner.png" Alt=".NET Developer banner" Height="360" Class="rounded-lg ma-4" />
+    </MudStack>
+</MudContainer>
 
-Welcome to your new app.
+<MudContainer Width="100%" Square="true" Class="bg-primary" Style="padding: 150px; padding-bottom: 250px;">
+    <MudText Align="Align.Center" Typo="Typo.h4" Class="fw-bold my-5 text-white">Hi, I'm @ViewModel!.Profile?.FirstName. Nice to meet you</MudText>
+
+    @if (ViewModel!.Profile?.AboutMe is string aboutMe)
+    {
+        <MudText Align="Align.Center" Class="text-white">@aboutMe</MudText>
+    }
+</MudContainer>
+
+<MudContainer MaxWidth="MaxWidth.Large" Style="margin-top: -100px;" Class="d-flex gap-3">
+@*     @foreach (var skill in ViewModel!.TopThreeSkills)
+    {
+        <MudCard Class="flex-grow-1 col" Style="padding-top: 50px; padding-bottom: 50px; padding-left: 20px; padding-right: 20px;">
+            <MudCardContent>
+                <MudStack AlignItems="AlignItems.Center">
+                    <MudImage Src="@skill.IconPath" Height="96" Width="96" Class="rounded-circle p-3" Style="background-color: plum;" />
+                    <MudText Typo="Typo.h6" Class="fw-bold">@skill.Name</MudText>
+                    <MudText Typo="Typo.body1">@skill.</MudText>
+
+                    @if (skill.Additional != null)
+                    {
+                        foreach (var addition in skill.Additional)
+                        {
+                            <MudText Typo="Typo.body1" Color="Color.Primary">@addition.Name</MudText>
+
+                            foreach (var val in addition.Value)
+                            {
+                                <MudText Typo="Typo.body2" Style="margin-top: -5px; margin-bottom: -5px;">@val</MudText>
+                            }
+                        }
+                    }
+                </MudStack>
+            </MudCardContent>
+        </MudCard>
+    } *@
+</MudContainer>
+
+<MudContainer>
+    <MudStack AlignItems="AlignItems.Center" Style="margin-top: 100px;">
+        <MudText Align="Align.Center" Typo="Typo.h4" Class="fw-bold my-5">My Recent Work</MudText>
+        <MudText Align="Align.Center">
+            Here are a few past projects I've worked on. Want to see more?
+            <MudLink Href="#">Email me!</MudLink>
+        </MudText>
+
+        <MudGrid>
+
+        </MudGrid>
+    </MudStack>
+</MudContainer>
+
+<MudScrollToTop>
+    <MudFab Color="Color.Tertiary" StartIcon="@Icons.Material.Filled.ArrowUpward" />
+</MudScrollToTop>

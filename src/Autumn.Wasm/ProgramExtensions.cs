@@ -8,9 +8,6 @@ namespace Autumn.Wasm
     {
         public static WebAssemblyHostBuilder RegisterServices(this WebAssemblyHostBuilder builder)
         {
-            builder.Services.AddMudLocalization();
-            builder.Services.AddMudPopoverService();
-            builder.Services.AddMudBlazorDialog();
             builder.Services.AddMudServices();
 
             builder.Services.AddTransient<HomeViewModel>();

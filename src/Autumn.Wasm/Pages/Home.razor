@@ -8,47 +8,38 @@
 
 <MudContainer MaxWidth="MaxWidth.Large">
     <MudStack AlignItems="AlignItems.Center">
-        <MudText Typo="Typo.h3" Class="fw-bold mt-5" Align="Align.Center" Color="Color.Primary">@ViewModel!.Profile?.Role</MudText>
-        <MudText Style="margin-left: 150px; margin-right: 150px;" Align="Align.Center">@ViewModel!.Profile?.RoleDescription</MudText>
-        <MudImage Src="images/home_banner.png" Alt=".NET Developer banner" Height="360" Class="rounded-lg ma-4" />
+        <MudText Typo="Typo.h3" Class="fw-bold mt-5" Align="Align.Center" Color="Color.Primary">Hi! I'm @(ViewModel!.Profile?.NickName ?? ViewModel!.Profile?.FirstName), nice to meet you!</MudText>
+        <MudText Style="margin-left: 150px; margin-right: 150px;" Align="Align.Center">@ViewModel!.Profile?.TagLine</MudText>
+        <MudImage Src="images/home_banner.png" Alt=".NET Developer banner" Height="360" Class="rounded-lg mx-4 mt-4" />
     </MudStack>
 </MudContainer>
 
-<MudContainer Width="100%" Square="true" Class="bg-primary" Style="padding: 150px; padding-bottom: 250px;">
-    <MudText Align="Align.Center" Typo="Typo.h4" Class="fw-bold my-5 text-white">Hi, I'm @ViewModel!.Profile?.FirstName. Nice to meet you</MudText>
-
-    @if (ViewModel!.Profile?.AboutMe is string aboutMe)
-    {
+@if (ViewModel!.Profile?.AboutMe is string aboutMe)
+{
+    <MudContainer Width="100%" Square="true" Class="mud-theme-primary" Style="padding: 120px; padding-bottom: 250px;">
+        <MudText Align="Align.Center" Typo="Typo.h4" Class="fw-bold my-5 text-white">About Me</MudText>
         <MudText Align="Align.Center" Class="text-white">@aboutMe</MudText>
-    }
-</MudContainer>
+    </MudContainer>
+}
 
 <MudContainer MaxWidth="MaxWidth.Large" Style="margin-top: -100px;" Class="d-flex gap-3">
-@*     @foreach (var skill in ViewModel!.TopThreeSkills)
+    @foreach (var role in ViewModel!.Profile?.Roles ?? [])
     {
         <MudCard Class="flex-grow-1 col" Style="padding-top: 50px; padding-bottom: 50px; padding-left: 20px; padding-right: 20px;">
             <MudCardContent>
                 <MudStack AlignItems="AlignItems.Center">
-                    <MudImage Src="@skill.IconPath" Height="96" Width="96" Class="rounded-circle p-3" Style="background-color: plum;" />
-                    <MudText Typo="Typo.h6" Class="fw-bold">@skill.Name</MudText>
-                    <MudText Typo="Typo.body1">@skill.</MudText>
+                    <MudImage Src="@role.Image" Height="96" Width="96" Class="rounded-circle p-3" Style="background-color: plum;" />
+                    <MudText Typo="Typo.h6" Class="fw-bold">@role.RoleName</MudText>
+                    <MudText Typo="Typo.body1">@role.RoleDescription</MudText>
 
-                    @if (skill.Additional != null)
+                    @foreach (var tech in role.TechStack)
                     {
-                        foreach (var addition in skill.Additional)
-                        {
-                            <MudText Typo="Typo.body1" Color="Color.Primary">@addition.Name</MudText>
-
-                            foreach (var val in addition.Value)
-                            {
-                                <MudText Typo="Typo.body2" Style="margin-top: -5px; margin-bottom: -5px;">@val</MudText>
-                            }
-                        }
+                        <MudChip T="string">@tech</MudChip>
                     }
                 </MudStack>
             </MudCardContent>
         </MudCard>
-    } *@
+    }
 </MudContainer>
 
 <MudContainer>

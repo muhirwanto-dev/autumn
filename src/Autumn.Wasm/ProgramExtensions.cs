@@ -6,7 +6,7 @@ namespace Autumn.Wasm
 {
     public static class ProgramExtensions
     {
-        public static WebAssemblyHostBuilder RegisterServices(this WebAssemblyHostBuilder builder)
+        public static WebAssemblyHostBuilder AddServices(this WebAssemblyHostBuilder builder)
         {
             builder.Services.AddMudServices();
 
@@ -15,9 +15,12 @@ namespace Autumn.Wasm
             return builder;
         }
 
-        public static WebAssemblyHostBuilder RegisterHttpClient(this WebAssemblyHostBuilder builder)
+        public static WebAssemblyHostBuilder AddHttpClient(this WebAssemblyHostBuilder builder)
         {
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            builder.Services.AddScoped(sp => new HttpClient 
+            {
+                BaseAddress = new Uri(builder.HostEnvironment.BaseAddress),
+            });
 
             return builder;
         }

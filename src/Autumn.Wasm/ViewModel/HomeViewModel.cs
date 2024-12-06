@@ -30,6 +30,7 @@ namespace Autumn.Wasm.ViewModel
         public HomeViewModel(HttpClient httpClient, IDialogService dialogService)
         {
             _httpClient = httpClient;
+            _httpClient.DefaultRequestHeaders.Add("Cache-Control", "no-cache");
             _dialogService = dialogService;
         }
 
@@ -38,9 +39,9 @@ namespace Autumn.Wasm.ViewModel
             try
             {
                 Profile = await _httpClient.GetFromJsonAsync<ProfileEntity>("data/profile.json");
-                Experiences = await _httpClient.GetFromJsonAsync<ExperienceEntity[]>("data/experiences.json");
-                Projects = await _httpClient.GetFromJsonAsync<ProjectEntity[]>("data/projects.json");
-                Skills = await _httpClient.GetFromJsonAsync<SkillEntity[]>("data/skills.json");
+                Experiences = await _httpClient.GetFromJsonAsync<ExperienceEntity[]>("data/experiences.json") ?? [];
+                Projects = await _httpClient.GetFromJsonAsync<ProjectEntity[]>("data/projects.json") ?? [];
+                Skills = await _httpClient.GetFromJsonAsync<SkillEntity[]>("data/skills.json") ?? [];
             }
             catch (Exception ex)
             {

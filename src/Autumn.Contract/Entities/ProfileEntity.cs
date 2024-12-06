@@ -8,10 +8,14 @@
 
         public required string FirstName { get; set; }
 
+        public string? NickName { get; set; }
+
         public required string Role { get; set; }
 
         public string? RoleDescription { get; set; }
 
-        public IEnumerable<SkillEntity> SkillSet { get; set; } = [];
+        public string? TagLine { get; set; }
+
+        public RoleEntity[]? Roles { get; set; }
     }
 }

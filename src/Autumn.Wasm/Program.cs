@@ -12,8 +12,8 @@ namespace Autumn.Wasm
             builder.RootComponents.Add<HeadOutlet>("head::after");
 
             await builder
-                .RegisterHttpClient()
-                .RegisterServices()
+                .AddHttpClient()
+                .AddServices()
                 .Build()
                 .RunAsync();
         }

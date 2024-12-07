@@ -8,7 +8,9 @@
 
 <MudContainer MaxWidth="MaxWidth.Large">
     <MudStack AlignItems="AlignItems.Center">
-        <MudText Typo="Typo.h3" Class="fw-bold mt-5" Align="Align.Center" Color="Color.Primary">Hi! I'm @(ViewModel!.Profile?.NickName ?? ViewModel!.Profile?.FirstName), nice to meet you!</MudText>
+        <MudText Typo="Typo.h3" Class="fw-bold mt-5" Align="Align.Center" Color="Color.Primary">Hi! I'm 
+            <MudText Inline="true" Typo="Typo.h3" Class="fw-bold mt-5" Color="Color.Secondary">@(ViewModel!.Profile?.NickName ?? ViewModel!.Profile?.FirstName)</MudText>
+            , nice to meet you!</MudText>
         <MudText Style="margin-left: 150px; margin-right: 150px;" Typo="Typo.h6" Align="Align.Center">@ViewModel!.Profile?.TagLine</MudText>
         <MudImage Src="images/home_banner.png" Alt=".NET Developer banner" Height="360" Class="rounded-lg mx-4 mt-4" />
     </MudStack>
@@ -17,7 +19,9 @@
 @if (ViewModel!.Profile?.AboutMe is string aboutMe)
 {
     <MudContainer Class="mud-theme-primary w-100" Style="padding: 120px; padding-bottom: 250px;">
-        <MudText Align="Align.Center" Typo="Typo.h4" Class="fw-bold my-5 text-white">Who am I?</MudText>
+        <MudText Align="Align.Center" Typo="Typo.h3" Class="fw-bold my-5 text-white">ABOUT 
+            <MudText Inline="true" Typo="Typo.h3" Class="fw-bold my-5" Color="Color.Secondary">ME</MudText>
+            </MudText>
         <MudText Align="Align.Center" Class="text-white">@aboutMe</MudText>
     </MudContainer>
 }
@@ -28,7 +32,7 @@
         <MudCard Class="flex-grow-1 col" Style="padding-top: 50px; padding-bottom: 50px; padding-left: 20px; padding-right: 20px;">
             <MudCardContent>
                 <MudStack AlignItems="AlignItems.Center">
-                    <MudImage Src="@role.Image" Height="96" Width="96" Class="rounded-circle p-3" Style="background-color: plum;" />
+                    <MudImage Src="@(role.Image ?? role.ImageUrl)" Height="96" Width="96" Class="rounded-circle p-3" Style="background-color: plum;" />
                     <MudText Typo="Typo.h6" Class="fw-bold" Align="Align.Center">@role.RoleName</MudText>
                     <MudText Typo="Typo.body1" Align="Align.Center">@role.RoleDescription</MudText>
 
@@ -44,6 +48,25 @@
     }
 </MudContainer>
 
+<MudContainer Style="margin-block: 150px;">
+    <MudText Align="Align.Center" Typo="Typo.h3" Class="mb-5">MY EXPERIENCES</MudText>
+    <MudTimeline TimelinePosition="TimelinePosition.Alternate" TimelineAlign="TimelineAlign.Start">
+        @foreach (var (exp, index) in ViewModel!.Experiences.Reverse().Select((e, idx) => (e, idx)))
+        {
+            Color timelineColor = (index == 0) ? Color.Success : Color.Default;
+            Size timelineSize = (index == 0) ? Size.Medium : Size.Small;
+
+            <MudTimelineItem Color="@timelineColor" Variant="Variant.Outlined" Size="@timelineSize">
+                <ItemContent>
+                    <MudText Color="Color.Info" Typo="Typo.h6">@($"{exp.StartDate} - {exp.EndDate}")</MudText>
+                    <MudText Typo="Typo.h6" Class="mb-4">@exp.CompanyName</MudText>
+                    <MudText>@exp.Description</MudText>
+                </ItemContent>
+            </MudTimelineItem>
+        }
+    </MudTimeline>
+</MudContainer>
+
 <MudContainer>
     <MudStack AlignItems="AlignItems.Center" Style="margin-top: 100px;">
         <MudText Align="Align.Center" Typo="Typo.h4" Class="fw-bold my-5">My Recent Work</MudText>
@@ -53,7 +76,7 @@
         </MudText>
 
         <MudGrid>
-
+            <MudImage Src="https://play-lh.googleusercontent.com/hiP5RcKDSW7CsX6h5KKz3MsqC6U-guov6E5xwtc8p-Qz-knht4OUfvInhlJi5sYNIAJI=s188-rw"></MudImage>
         </MudGrid>
     </MudStack>
 </MudContainer>

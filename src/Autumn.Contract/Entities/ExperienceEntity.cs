@@ -10,9 +10,11 @@
 
         public required string PositionName { get; set; }
 
-        public string? CompanyaName { get; set; }
+        public string? CompanyName { get; set; }
 
         public string? CompanyUrl { get; set; }
+
+        public string? CompanyImageUrl { get; set; }
 
         public string[] Tools { get; set; } = [];
     }

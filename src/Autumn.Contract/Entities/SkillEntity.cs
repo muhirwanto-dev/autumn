@@ -4,7 +4,9 @@
     {
         public required string Name { get; set; }
 
-        public string? IconPath { get; set; }
+        public string? Icon { get; set; }
+
+        public string? IconUrl { get; set; }
 
         public int Score { get; set; }
     }

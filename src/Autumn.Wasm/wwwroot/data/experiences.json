@@ -1,10 +1,11 @@
 [
   {
-    "CompanyName": "Company 1",
+    "CompanyName": "Dummy company 1",
     "CompanyUrl": "https://company-1.example.com",
-    "PositionName": "Programmer",
-    "Description": "Lorem ipsum dolor sir amet",
-    "StartDate": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "CompanyImageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBm7qM-kLHVkbH0fzej5sHBLwrYTcJqDjwNQ&s",
+    "PositionName": "My position",
+    "Description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "StartDate": "1900/01/30",
     "EndDate": "Present",
     "Tools": [
       "Visual Studio",

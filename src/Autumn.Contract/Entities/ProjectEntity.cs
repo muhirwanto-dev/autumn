@@ -6,6 +6,8 @@
 
         public string? Image { get; set; }
 
+        public string? ImageUrl { get; set; }
+
         public string? ProjectUrl { get; set; }
 
         public required string Overview { get; set; }

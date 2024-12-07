@@ -3,13 +3,11 @@
 <MudThemeProvider />
 
 <MudLayout>
-    <MudAppBar Class="py-2" Color="Color.Transparent" Elevation="0" Fixed="false">
-        <div class="d-flex gap-4 w-100">
-            <MudIconButton Icon="@Icons.Material.Filled.Home" Color="Color.Primary" />
-            <MudSpacer />
-            <MudButton Variant="Variant.Text" Class="rounded-pill">Say Hi!</MudButton>
-            <MudButton Variant="Variant.Outlined" Class="rounded-pill" Color="Color.Primary">Portfolio</MudButton>
-        </div>
+    <MudAppBar Class="py-2 bg-white gap-5" Dense="true" Elevation="0" Fixed="true">
+        <MudIconButton Icon="@Icons.Material.Filled.Home" Color="Color.Primary" />
+        <MudSpacer />
+        <MudButton Variant="Variant.Text" Class="rounded-pill">Say Hi!</MudButton>
+        <MudButton Variant="Variant.Outlined" Class="rounded-pill" Color="Color.Primary">Portfolio</MudButton>
     </MudAppBar>
 
     <MudMainContent Class="mt-5">

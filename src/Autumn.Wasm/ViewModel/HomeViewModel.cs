@@ -1,11 +1,11 @@
 ﻿using System.Net.Http.Json;
-using Blazing.Mvvm.ComponentModel;
-using Autumn.Contract.Entities;
-using MudBlazor;
-using CommunityToolkit.Mvvm.ComponentModel;
-using Autumn.Contract.GitHub;
-using System.Text.Json;
 using System.Text;
+using System.Text.Json;
+using Autumn.Contract.Entities;
+using Autumn.Contract.GitHub;
+using Blazing.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
+using MudBlazor;
 
 namespace Autumn.Wasm.ViewModel
 {
@@ -23,11 +23,11 @@ namespace Autumn.Wasm.ViewModel
 
         [ObservableProperty]
         private ExperienceEntity[] _experiences = [];
-        
+
         [ObservableProperty]
         private ProjectEntity[] _projects = [];
 
-        public SkillEntity[] TopThreeSkills => Skills.Length > 3 
+        public SkillEntity[] TopThreeSkills => Skills.Length > 3
             ? Skills.Take(3).ToArray() : Skills;
 
         public HomeViewModel(HttpClient httpClient, IDialogService dialogService)
@@ -46,9 +46,9 @@ namespace Autumn.Wasm.ViewModel
             try
             {
                 Profile = await GetGithubContent<ProfileEntity>("profile.json");
-                Experiences = await _httpClient.GetFromJsonAsync<ExperienceEntity[]>("data/experiences.json") ?? [];
-                Projects = await _httpClient.GetFromJsonAsync<ProjectEntity[]>("data/projects.json") ?? [];
-                Skills = await _httpClient.GetFromJsonAsync<SkillEntity[]>("data/skills.json") ?? [];
+                Experiences = await GetGithubContent<ExperienceEntity[]>("experiences.json") ?? [];
+                Projects = await GetGithubContent<ProjectEntity[]>("projects.json") ?? [];
+                Skills = await GetGithubContent<SkillEntity[]>("skills.json") ?? [];
             }
             catch (Exception ex)
             {

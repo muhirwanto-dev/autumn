@@ -1,32 +1,8 @@
 [
   {
-    "Name": ".NET MAUI",
-    "IconPath": "images/ic_code.svg",
-    "Score": 80
-  },
-  {
-    "Name": ".NET Core MVC",
-    "IconPath": "images/ic_code.svg",
-    "Score": 80
-  },
-  {
-    "Name": "Blazor",
-    "IconPath": "images/ic_code.svg",
-    "Score": 80
-  },
-  {
-    "Name": "SQL Server",
-    "IconPath": "images/ic_code.svg",
-    "Score": 80
-  },
-  {
-    "Name": "SQLite",
-    "IconPath": "images/ic_code.svg",
-    "Score": 80
-  },
-  {
-    "Name": "Bootstrap",
-    "IconPath": "images/ic_code.svg",
+    "Name": "My skill 1",
+    "Icon": "images/ic_code.svg",
+    "IconUrl": null,
     "Score": 80
   }
 ]

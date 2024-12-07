@@ -17,7 +17,7 @@ namespace Autumn.Wasm
 
         public static WebAssemblyHostBuilder AddHttpClient(this WebAssemblyHostBuilder builder)
         {
-            builder.Services.AddScoped(sp => new HttpClient 
+            builder.Services.AddScoped(sp => new HttpClient
             {
                 BaseAddress = new Uri(builder.HostEnvironment.BaseAddress),
             });

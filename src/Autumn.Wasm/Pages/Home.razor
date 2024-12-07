@@ -49,6 +49,22 @@
 </MudContainer>
 
 <MudContainer Style="margin-block: 150px;">
+    <MudStack>
+        <MudContainer>
+            @{
+                var series = ViewModel!.Skills
+                    .Select(e => new ChartSeries { Name = e.Name, Data = [e.Score] })
+                    .ToList();
+
+                var labels = new string[0];
+
+                <MudChart ChartType="ChartType.Bar" ChartSeries="@series" XAxisLabels="@labels" Width="100%" />
+            }
+        </MudContainer>
+    </MudStack>
+</MudContainer>
+
+<MudContainer Style="margin-block: 150px;">
     <MudText Align="Align.Center" Typo="Typo.h3" Class="mb-5">MY EXPERIENCES</MudText>
     <MudTimeline TimelinePosition="TimelinePosition.Alternate" TimelineAlign="TimelineAlign.Start">
         @foreach (var (exp, index) in ViewModel!.Experiences.Reverse().Select((e, idx) => (e, idx)))

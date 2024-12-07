@@ -31,7 +31,7 @@
     {
         <MudCard Class="flex-grow-1 col" Style="padding-top: 50px; padding-bottom: 50px; padding-left: 20px; padding-right: 20px;">
             <MudCardContent>
-                <MudStack AlignItems="AlignItems.Center">
+                <MudStack AlignItems="AlignItems.Center" Justify="Justify.Center">
                     <MudImage Src="@(role.Image ?? role.ImageUrl)" Height="96" Width="96" Class="rounded-circle p-3" Style="background-color: plum;" />
                     <MudText Typo="Typo.h6" Class="fw-bold" Align="Align.Center">@role.RoleName</MudText>
                     <MudText Typo="Typo.body1" Align="Align.Center">@role.RoleDescription</MudText>
@@ -48,39 +48,57 @@
     }
 </MudContainer>
 
-<MudContainer Style="margin-block: 150px;">
-    <MudStack>
-        <MudContainer>
-            @{
-                var series = ViewModel!.Skills
-                    .Select(e => new ChartSeries { Name = e.Name, Data = [e.Score] })
-                    .ToList();
-
-                var labels = new string[0];
-
-                <MudChart ChartType="ChartType.Bar" ChartSeries="@series" XAxisLabels="@labels" Width="100%" />
+<MudContainer Class="w-75" Style="margin-block: 150px;">
+    <MudStack Justify="Justify.Center" AlignItems="AlignItems.Center">
+        <MudText Typo="Typo.h3" Align="Align.Center">SKILLS</MudText>
+        <MudDivider DividerType="DividerType.Middle" Class="w-25" Style="margin-bottom: 20px; height: 2px;" />
+        <MudGrid Spacing="3" Justify="Justify.Center" Class="w-100">
+            @foreach (var skill in ViewModel!.Skills.Where(e => e.Score.HasValue))
+            {
+                <MudItem sm="4">
+                    <MudText>@skill.Name</MudText>
+                </MudItem>
+                <MudItem sm="7">
+                    <MudProgressLinear Color="Color.Warning" Rounded="true" Size="Size.Large" Value="@skill.Score!.Value"
+                        Style="margin-top: 7.5px;"/>
+                </MudItem>
+                <MudItem sm="1">
+                    <MudText Typo="Typo.subtitle1">@skill.Score!.Value</MudText>
+                </MudItem>
             }
-        </MudContainer>
+        </MudGrid>
+        <MudStack>
+            <MudText Typo="Typo.h5" Class="mt-2">Other Skills</MudText>
+            <MudStack Justify="Justify.FlexStart" Row="true" Wrap="Wrap.Wrap">
+                @foreach (var skill in ViewModel!.Skills.Where(e => !string.IsNullOrEmpty(e.Icon) || !string.IsNullOrEmpty(e.IconUrl)))
+                {
+                    <MudImage Src="@(skill.Icon ?? skill.IconUrl)" Height="48" ObjectFit="ObjectFit.Contain" />
+                }
+            </MudStack>
+        </MudStack>
     </MudStack>
 </MudContainer>
 
 <MudContainer Style="margin-block: 150px;">
-    <MudText Align="Align.Center" Typo="Typo.h3" Class="mb-5">MY EXPERIENCES</MudText>
-    <MudTimeline TimelinePosition="TimelinePosition.Alternate" TimelineAlign="TimelineAlign.Start">
-        @foreach (var (exp, index) in ViewModel!.Experiences.Reverse().Select((e, idx) => (e, idx)))
-        {
-            Color timelineColor = (index == 0) ? Color.Success : Color.Default;
-            Size timelineSize = (index == 0) ? Size.Medium : Size.Small;
+    <MudStack Justify="Justify.Center" AlignItems="AlignItems.Center">
+        <MudText Align="Align.Center" Typo="Typo.h3">EXPERIENCES</MudText>
+        <MudDivider DividerType="DividerType.Middle" Class="w-25" Style="margin-bottom: 20px; height: 2px;" />
+        <MudTimeline TimelinePosition="TimelinePosition.Alternate" TimelineAlign="TimelineAlign.Start">
+            @foreach (var (exp, index) in ViewModel!.Experiences.Reverse().Select((e, idx) => (e, idx)))
+            {
+                Color timelineColor = (index == 0) ? Color.Success : Color.Default;
+                Size timelineSize = (index == 0) ? Size.Medium : Size.Small;
 
-            <MudTimelineItem Color="@timelineColor" Variant="Variant.Outlined" Size="@timelineSize">
-                <ItemContent>
-                    <MudText Color="Color.Info" Typo="Typo.h6">@($"{exp.StartDate} - {exp.EndDate}")</MudText>
-                    <MudText Typo="Typo.h6" Class="mb-4">@exp.CompanyName</MudText>
-                    <MudText>@exp.Description</MudText>
-                </ItemContent>
-            </MudTimelineItem>
-        }
-    </MudTimeline>
+                <MudTimelineItem Color="@timelineColor" Variant="Variant.Outlined" Size="@timelineSize">
+                    <ItemContent>
+                        <MudText Color="Color.Info" Typo="Typo.h6">@($"{exp.StartDate} - {exp.EndDate}")</MudText>
+                        <MudText Typo="Typo.h6" Class="mb-4">@exp.CompanyName</MudText>
+                        <MudText>@exp.Description</MudText>
+                    </ItemContent>
+                </MudTimelineItem>
+            }
+        </MudTimeline>
+    </MudStack>
 </MudContainer>
 
 <MudContainer>
@@ -90,10 +108,6 @@
             Here are a few past projects I've worked on. Want to see more?
             <MudLink Href="#">Email me!</MudLink>
         </MudText>
-
-        <MudGrid>
-            <MudImage Src="https://play-lh.googleusercontent.com/hiP5RcKDSW7CsX6h5KKz3MsqC6U-guov6E5xwtc8p-Qz-knht4OUfvInhlJi5sYNIAJI=s188-rw"></MudImage>
-        </MudGrid>
     </MudStack>
 </MudContainer>
 

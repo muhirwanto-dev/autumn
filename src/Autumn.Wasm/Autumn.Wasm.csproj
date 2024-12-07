@@ -17,10 +17,4 @@
     <ProjectReference Include="..\Autumn.Contract\Autumn.Contract.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="wwwroot\data\profile.json">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
 </Project>

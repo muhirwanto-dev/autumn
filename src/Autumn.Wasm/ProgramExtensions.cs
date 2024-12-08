@@ -17,9 +17,17 @@ namespace Autumn.Wasm
 
         public static WebAssemblyHostBuilder AddHttpClient(this WebAssemblyHostBuilder builder)
         {
-            builder.Services.AddScoped(sp => new HttpClient
+            builder.Services.AddHttpClient(Constants.HttpClientNames.OfflineClient, client =>
             {
-                BaseAddress = new Uri(builder.HostEnvironment.BaseAddress),
+                client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress);
+                client.DefaultRequestHeaders.CacheControl = new System.Net.Http.Headers.CacheControlHeaderValue { NoCache = true };
+            });
+
+            builder.Services.AddHttpClient(Constants.HttpClientNames.OnlineClient, client =>
+            {
+                client.BaseAddress = new Uri(AppSettings.AssetsSource);
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/vnd.github+json"));
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", AppSettings.AccessToken);
             });
 
             return builder;

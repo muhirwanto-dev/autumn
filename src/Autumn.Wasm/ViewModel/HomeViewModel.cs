@@ -11,7 +11,8 @@ namespace Autumn.Wasm.ViewModel
 {
     public partial class HomeViewModel : ViewModelBase
     {
-        private readonly HttpClient _httpClient;
+        private readonly HttpClient _onlineClient;
+        private readonly HttpClient _offlineClient;
         private readonly IDialogService _dialogService;
 
         [ObservableProperty]
@@ -30,25 +31,21 @@ namespace Autumn.Wasm.ViewModel
         public SkillEntity[] TopThreeSkills => Skills.Length > 3
             ? Skills.Take(3).ToArray() : Skills;
 
-        public HomeViewModel(HttpClient httpClient, IDialogService dialogService)
+        public HomeViewModel(IHttpClientFactory clientFactory, IDialogService dialogService)
         {
-            _httpClient = httpClient;
+            _onlineClient = clientFactory.CreateClient(Constants.HttpClientNames.OnlineClient);
+            _offlineClient = clientFactory.CreateClient(Constants.HttpClientNames.OfflineClient);
             _dialogService = dialogService;
-
-            //_httpClient.DefaultRequestHeaders.CacheControl = new System.Net.Http.Headers.CacheControlHeaderValue { NoCache = true };
-            _httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/vnd.github+json"));
-            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", AppSettings.AccessToken);
-            _httpClient.BaseAddress = new Uri(AppSettings.AssetsSource);
         }
 
         public override async Task Loaded()
         {
             try
             {
-                Profile = await GetGithubContent<ProfileEntity>("profile.json");
-                Experiences = await GetGithubContent<ExperienceEntity[]>("experiences.json") ?? [];
-                Projects = await GetGithubContent<ProjectEntity[]>("projects.json") ?? [];
-                Skills = await GetGithubContent<SkillEntity[]>("skills.json") ?? [];
+                Profile = await LoadContentAsync<ProfileEntity>("profile.json");
+                Experiences = await LoadContentAsync<ExperienceEntity[]>("experiences.json") ?? [];
+                Projects = await LoadContentAsync<ProjectEntity[]>("projects.json") ?? [];
+                Skills = await LoadContentAsync<SkillEntity[]>("skills.json") ?? [];
             }
             catch (Exception ex)
             {
@@ -56,9 +53,27 @@ namespace Autumn.Wasm.ViewModel
             }
         }
 
-        private async Task<T?> GetGithubContent<T>(string path)
+        private async Task<T?> LoadContentAsync<T>(string content)
         {
-            var asset = await _httpClient.GetFromJsonAsync<GithubAsset>(path);
+            try
+            {
+                var onlineContent = await GetGithubContentAsync<T>(content);
+                if (onlineContent != null)
+                {
+                    return onlineContent;
+                }
+            }
+            catch (Exception ex)
+            {
+                await _dialogService.ShowMessageBox("Error", "Failed to fetch online data!");
+            }
+
+            return await _offlineClient.GetFromJsonAsync<T>($"data/{content}");
+        }
+
+        private async Task<T?> GetGithubContentAsync<T>(string path)
+        {
+            var asset = await _onlineClient.GetFromJsonAsync<GithubAsset>(path);
             if (asset == null || asset.Content == null)
             {
                 return default;

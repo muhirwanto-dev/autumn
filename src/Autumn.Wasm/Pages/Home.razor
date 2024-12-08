@@ -6,11 +6,12 @@
 
 <PageTitle>Home</PageTitle>
 
+<div style="margin-block: 100px"></div>
+
 <MudContainer MaxWidth="MaxWidth.Large">
     <MudStack AlignItems="AlignItems.Center">
         <MudText Typo="Typo.h3" Class="fw-bold mt-5" Align="Align.Center" Color="Color.Primary">Hi! I'm 
-            <MudText Inline="true" Typo="Typo.h3" Class="fw-bold mt-5" Color="Color.Secondary">@(ViewModel!.Profile?.NickName ?? ViewModel!.Profile?.FirstName)</MudText>
-            , nice to meet you!</MudText>
+            <MudText Inline="true" Typo="Typo.h3" Class="fw-bold mt-5" Color="Color.Secondary">@(ViewModel!.Profile?.NickName ?? ViewModel!.Profile?.FirstName)</MudText>, nice to meet you!</MudText>
         <MudText Style="margin-left: 150px; margin-right: 150px;" Typo="Typo.h6" Align="Align.Center">@ViewModel!.Profile?.TagLine</MudText>
         <MudImage Src="images/home_banner.png" Alt=".NET Developer banner" Height="360" Class="rounded-lg mx-4 mt-4" />
     </MudStack>
@@ -72,7 +73,7 @@
             <MudStack Justify="Justify.FlexStart" Row="true" Wrap="Wrap.Wrap">
                 @foreach (var skill in ViewModel!.Skills.Where(e => !string.IsNullOrEmpty(e.Icon) || !string.IsNullOrEmpty(e.IconUrl)))
                 {
-                    <MudImage Src="@(skill.Icon ?? skill.IconUrl)" Height="48" ObjectFit="ObjectFit.Contain" />
+                    <MudImage Src="@(skill.IconUrl ?? skill.Icon)" Height="48" ObjectFit="ObjectFit.Contain" />
                 }
             </MudStack>
         </MudStack>
@@ -84,10 +85,13 @@
         <MudText Align="Align.Center" Typo="Typo.h3">EXPERIENCES</MudText>
         <MudDivider DividerType="DividerType.Middle" Class="w-25" Style="margin-bottom: 20px; height: 2px;" />
         <MudTimeline TimelinePosition="TimelinePosition.Alternate" TimelineAlign="TimelineAlign.Start">
-            @foreach (var (exp, index) in ViewModel!.Experiences.Reverse().Select((e, idx) => (e, idx)))
+            @foreach (var exp in ViewModel!.Experiences
+                .Where(e => !string.IsNullOrEmpty(e.StartDate))
+                .OrderByDescending(e => DateTime.Parse(e.StartDate!)))
             {
-                Color timelineColor = (index == 0) ? Color.Success : Color.Default;
-                Size timelineSize = (index == 0) ? Size.Medium : Size.Small;
+                bool isActive = exp.EndDate?.Equals("Present", StringComparison.CurrentCultureIgnoreCase) ?? false;
+                Color timelineColor = isActive ? Color.Success : Color.Default;
+                Size timelineSize = isActive ? Size.Medium : Size.Small;
 
                 <MudTimelineItem Color="@timelineColor" Variant="Variant.Outlined" Size="@timelineSize">
                     <ItemContent>
@@ -103,11 +107,10 @@
 
 <MudContainer>
     <MudStack AlignItems="AlignItems.Center" Style="margin-top: 100px;">
-        <MudText Align="Align.Center" Typo="Typo.h4" Class="fw-bold my-5">My Recent Work</MudText>
-        <MudText Align="Align.Center">
-            Here are a few past projects I've worked on. Want to see more?
-            <MudLink Href="#">Email me!</MudLink>
-        </MudText>
+        <MudText Align="Align.Center" Typo="Typo.h4" Class="fw-bold my-5">MY PROJECTS</MudText>
+        <MudDivider DividerType="DividerType.Middle" Class="w-25" Style="margin-bottom: 20px; height: 2px;" />
+        <MudText Align="Align.Center">Here are a few past projects I've worked on.</MudText>
+
     </MudStack>
 </MudContainer>
 

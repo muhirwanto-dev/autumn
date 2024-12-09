@@ -10,9 +10,9 @@
 
 <MudContainer MaxWidth="MaxWidth.Large">
     <MudStack AlignItems="AlignItems.Center">
-        <MudText Typo="Typo.h3" Class="fw-bold mt-5" Align="Align.Center" Color="Color.Primary">Hi! I'm 
-            <MudText Inline="true" Typo="Typo.h3" Class="fw-bold mt-5" Color="Color.Secondary">@(ViewModel!.Profile?.NickName ?? ViewModel!.Profile?.FirstName)</MudText>, nice to meet you!</MudText>
-        <MudText Style="margin-left: 150px; margin-right: 150px;" Typo="Typo.h6" Align="Align.Center">@ViewModel!.Profile?.TagLine</MudText>
+        <MudText Typo="Typo.h2" Class="fw-bold mt-5" Align="Align.Center" Color="Color.Primary">Hi! I'm 
+            <MudText Inline="true" Typo="Typo.h2" Class="fw-bold mt-5" Color="Color.Secondary">@(ViewModel!.Profile?.NickName ?? ViewModel!.Profile?.FirstName)</MudText>, nice to meet you!</MudText>
+        <MudText Style="margin-left: 150px; margin-right: 150px;" Typo="Typo.h5" Align="Align.Center">@ViewModel!.Profile?.TagLine</MudText>
         <MudImage Src="images/home_banner.png" Alt=".NET Developer banner" Height="360" Class="rounded-lg mx-4 mt-4" />
     </MudStack>
 </MudContainer>
@@ -33,7 +33,7 @@
         <MudCard Class="flex-grow-1 col" Style="padding-top: 50px; padding-bottom: 50px; padding-left: 20px; padding-right: 20px;">
             <MudCardContent>
                 <MudStack AlignItems="AlignItems.Center" Justify="Justify.Center">
-                    <MudImage Src="@(role.Image ?? role.ImageUrl)" Height="96" Width="96" Class="rounded-circle p-3" Style="background-color: plum;" />
+                    <MudImage Src="@(role.ImageUrl ?? role.Image)" Height="96" Width="96" Class="rounded-circle p-3" Style="background-color: plum;" />
                     <MudText Typo="Typo.h6" Class="fw-bold" Align="Align.Center">@role.RoleName</MudText>
                     <MudText Typo="Typo.body1" Align="Align.Center">@role.RoleDescription</MudText>
 
@@ -84,7 +84,7 @@
     <MudStack Justify="Justify.Center" AlignItems="AlignItems.Center">
         <MudText Align="Align.Center" Typo="Typo.h3">EXPERIENCES</MudText>
         <MudDivider DividerType="DividerType.Middle" Class="w-25" Style="margin-bottom: 20px; height: 2px;" />
-        <MudTimeline TimelinePosition="TimelinePosition.Alternate" TimelineAlign="TimelineAlign.Start">
+        <MudTimeline TimelinePosition="TimelinePosition.Alternate" TimelineAlign="TimelineAlign.Default">
             @foreach (var exp in ViewModel!.Experiences
                 .Where(e => !string.IsNullOrEmpty(e.StartDate))
                 .OrderByDescending(e => DateTime.Parse(e.StartDate!)))
@@ -95,8 +95,12 @@
 
                 <MudTimelineItem Color="@timelineColor" Variant="Variant.Outlined" Size="@timelineSize">
                     <ItemContent>
+                        @if (!string.IsNullOrEmpty(exp.CompanyImageUrl))
+                        {                            
+                            <MudImage Src="@exp.CompanyImageUrl" Height="48" ObjectFit="ObjectFit.Contain" />
+                        }
                         <MudText Color="Color.Info" Typo="Typo.h6">@($"{exp.StartDate} - {exp.EndDate}")</MudText>
-                        <MudText Typo="Typo.h6" Class="mb-4">@exp.CompanyName</MudText>
+                        <MudLink Typo="Typo.h6" Class="mb-4" Underline="Underline.Hover" Target="_blank" Href="@exp.CompanyUrl">@exp.CompanyName</MudLink>
                         <MudText>@exp.Description</MudText>
                     </ItemContent>
                 </MudTimelineItem>
@@ -105,12 +109,39 @@
     </MudStack>
 </MudContainer>
 
-<MudContainer>
-    <MudStack AlignItems="AlignItems.Center" Style="margin-top: 100px;">
-        <MudText Align="Align.Center" Typo="Typo.h4" Class="fw-bold my-5">MY PROJECTS</MudText>
+<MudContainer id="container-my-projects">
+    <MudStack AlignItems="AlignItems.Center" Justify="Justify.Center" Style="margin-top: 100px;">
+        <MudText Align="Align.Center" Typo="Typo.h3">MY PROJECTS</MudText>
         <MudDivider DividerType="DividerType.Middle" Class="w-25" Style="margin-bottom: 20px; height: 2px;" />
-        <MudText Align="Align.Center">Here are a few past projects I've worked on.</MudText>
-
+        <MudText Align="Align.Center" Class="mb-2">Here are a few past projects I've worked on.</MudText>
+        <MudStack Justify="Justify.Center" AlignItems="AlignItems.Center" Row="true" Wrap="Wrap.Wrap">
+            @foreach (var project in ViewModel!.Projects)
+            {
+                <MudCard Class="w-50">
+                    <MudCardHeader>
+                        <CardHeaderContent>
+                            <MudText Typo="Typo.h6">@project.ProjectTitle</MudText>
+                            <MudText>@project.Overview</MudText>
+                        </CardHeaderContent>
+                        <CardHeaderActions>
+                            <MudIconButton Icon="@Icons.Material.Filled.Web" Color="Color.Default" Href="@project.ProjectUrl" Target="_blank"/>
+                        </CardHeaderActions>
+                    </MudCardHeader>
+                    <MudCardContent>
+                        <MudStack Justify="Justify.Center">
+                            <MudImage Src="@(project.ImageUrl ?? project.Image)" Height="500" Class="my-1" ObjectFit="ObjectFit.Contain"/>
+                            <MudText>@project.Description</MudText>
+                            <MudStack Justify="Justify.FlexStart" Row="true" Wrap="Wrap.Wrap"Spacing="0" Class="mt-5">
+                                @foreach (var tool in project.Tools)
+                                {
+                                    <MudChip T="string" Color="Color.Secondary">@tool</MudChip>
+                                }
+                            </MudStack>
+                        </MudStack>
+                    </MudCardContent>
+                </MudCard>
+            }
+        </MudStack>
     </MudStack>
 </MudContainer>
 

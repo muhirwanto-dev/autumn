@@ -63,9 +63,9 @@ namespace Autumn.Wasm.ViewModel
                     return onlineContent;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                await _dialogService.ShowMessageBox("Error", "Failed to fetch online data!");
+                await _dialogService.ShowMessageBox("Error", $"Failed to fetch online data: {content}");
             }
 
             return await _offlineClient.GetFromJsonAsync<T>($"data/{content}");

@@ -1,0 +1,306 @@
+﻿@page "/about"
+
+@using Autumn.Wasm.ViewModel
+@using Blazing.Mvvm.Components
+
+@inherits MvvmComponentBase<AboutViewModel>
+
+<PageTitle>About</PageTitle>
+
+<MudContainer Class="mud-surface" Style="margin-top: -150px; padding-top: 150px;">
+    <MudGrid Class="w-100 mx-0 mx-sm-auto">
+        <MudItem xs="12" sm="7">
+            <MudStack AlignItems="AlignItems.Stretch">
+                <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+                    <MudText Typo="Typo.h2" Class="fw-bold w-100" Align="Align.Start">
+                        Hi! 
+                        <MudText Inline="true" Typo="Typo.h2" Class="fw-bold w-100" Align="Align.Start">
+                            I'm 
+                            <MudText Inline="true" Typo="Typo.h2" Class="fw-bold" Color="Color.Primary">@ViewModel!.Profile.NickName</MudText>
+                        </MudText>
+                    </MudText>
+
+                    <MudText Typo="Typo.h4" Color="Color.Secondary" Class="fw-bold">@ViewModel!.Profile.MainRole</MudText>
+                    <MudText Typo="Typo.h6" Align="Align.Start">@ViewModel!.Profile.Brief</MudText>
+                </MudHidden>
+                <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+                    <MudText Typo="Typo.h3" Class="fw-bold w-100" Align="Align.Start">
+                        Hi! 
+                        <MudText Inline="true" Typo="Typo.h3" Class="fw-bold w-100" Align="Align.Start">
+                            I'm 
+                            <MudText Inline="true" Typo="Typo.h3" Class="fw-bold" Color="Color.Primary">@ViewModel!.Profile.NickName</MudText>
+                        </MudText>
+                    </MudText>
+    
+                    <MudText Typo="Typo.h5" Color="Color.Secondary" Class="fw-bold">@ViewModel!.Profile.MainRole</MudText>
+                    <MudText Typo="Typo.body1" Align="Align.Start">@ViewModel!.Profile.Brief</MudText>
+                </MudHidden>
+            </MudStack>
+        </MudItem>
+        <MudItem xs="12" sm="5">
+            <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+                <MudStack Row="true" Justify="Justify.SpaceAround">
+                    @{
+                        string? photo = ViewModel!.Profile.PhotoUrl ?? ViewModel!.Profile.Photo ?? string.Empty;
+
+                        <MudImage Src=@photo FallbackSrc="images/img_no_photo.png" Alt="My photo" Height="360" Class="rounded-lg mt-4" />
+                    }
+
+                    <MudStack StretchItems="StretchItems.Start">
+                        <MudElement Class="mud-secondary h-auto mx-auto" Style="width: 2px;" />
+                        <MudIconButton Icon="@Icons.Custom.Brands.Gmail" Variant="Variant.Filled" Color="Color.Secondary" Href="@ViewModel!.SendEmailHrefQuery"></MudIconButton>
+                        <MudElement Class="mud-secondary h-25 mx-auto" Style="width: 2px;" />
+                    </MudStack>
+                </MudStack>
+            </MudHidden>
+            <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+                <MudStack Row="true" Justify="Justify.FlexStart">
+                    @{
+                        string? photo = ViewModel!.Profile.PhotoUrl ?? ViewModel!.Profile.Photo ?? string.Empty;
+
+                        <MudHidden Breakpoint="Breakpoint.Xs" Invert="true">
+                            <MudImage Src=@photo FallbackSrc="images/img_no_photo.png" Alt="My photo" Height="126" Class="rounded-lg mt-4" />
+                        </MudHidden>
+                        <MudHidden Breakpoint="Breakpoint.Sm" Invert="true">
+                            <MudImage Src=@photo FallbackSrc="images/img_no_photo.png" Alt="My photo" Height="360" Class="rounded-lg mt-4" />
+                        </MudHidden>
+                    }
+
+                    <MudElement Class="mud-secondary w-100 my-auto" Style="height: 2px; width: 100px;" />
+                    <MudIconButton Class="h-100 my-auto" Icon="@Icons.Custom.Brands.Gmail" Variant="Variant.Filled" Color="Color.Secondary" Href="@ViewModel!.SendEmailHrefQuery"></MudIconButton>
+                    <MudElement Class="mud-secondary w-25 my-auto" Style="height: 2px;" />
+                </MudStack>
+
+            </MudHidden>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+
+<MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+    <MudContainer Style="padding: 120px; padding-bottom: 250px;">
+        <MudText Align="Align.Center" Typo="Typo.h3" Class="fw-bold my-5 text-white">
+            ABOUT
+            <MudText Inline="true" Typo="Typo.h3" Class="fw-bold my-5" Color="Color.Primary" >ME</MudText>
+        </MudText>
+        @if (ViewModel!.Profile.AboutMe is string aboutMe)
+        {
+            <MudText Align="Align.Center" Class="text-white mx-auto">@aboutMe</MudText>
+        }
+    </MudContainer>
+</MudHidden>
+<MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+    <MudContainer Class="px-5" Style="padding-top: 100px; padding-bottom: 250px;">
+        <MudText Align="Align.Center" Typo="Typo.h3" Class="fw-bold my-5 text-white">
+            ABOUT
+            <MudText Inline="true" Typo="Typo.h3" Class="fw-bold my-5" Color="Color.Primary">ME</MudText>
+        </MudText>
+        @if (ViewModel!.Profile.AboutMe is string aboutMe)
+        {
+            <MudText Typo="Typo.body1" Align="Align.Center" Class="text-white mx-auto">@aboutMe</MudText>
+        }
+    </MudContainer>
+</MudHidden>
+
+<MudContainer Style="margin-top: -100px;">
+    <MudStack Row="@(!ViewModel!.IsSmallDevice)" AlignItems="AlignItems.Stretch">
+        @foreach (var role in ViewModel!.Profile.Roles)
+        {
+            <MudCard Class="col" Style="padding-top: 50px; padding-bottom: 50px; padding-left: 20px; padding-right: 20px;">
+                <MudCardContent>
+                    <MudStack AlignItems="AlignItems.Center">
+                        @{
+                            var image = role.ImageUrl ?? role.Image;
+
+                            <MudImage Src="@(image)" Height="96" Width="96" Class="rounded-circle p-3 mud-primary" />
+                        }
+                        <MudText Typo="Typo.h6" Color="Color.Primary" Class="fw-bold" Align="Align.Center">@role.RoleName</MudText>
+                        <MudText Typo="Typo.body1" Align="Align.Center" Class="my-auto" Style="height: 80px;">@role.RoleDescription</MudText>
+
+                        <MudText Typo="Typo.h6" Color="Color.Primary">Products</MudText>
+                        <MudDivider Class="mud-primary"/>
+
+                        <MudStack Row="true" Justify="Justify.Center" Wrap="Wrap.Wrap" Spacing="0">
+                            @foreach (var pid in role.Projects)
+                            {
+                                <MudChip T="string" Color="Color.Primary" Label="true">@(ViewModel!.ProjectIdMap.TryGetValue(pid, out string? pname) ? pname : null)</MudChip>
+                            }
+                        </MudStack>
+                    </MudStack>
+                </MudCardContent>
+            </MudCard>
+        }
+    </MudStack>
+</MudContainer>
+
+<MudContainer Class="w-75" Style="margin-block: 150px;">
+    <MudStack AlignItems="AlignItems.Center">
+        <MudText Typo="Typo.h3" Align="Align.Center">SKILLS</MudText>
+        <MudElement Class="w-25 mud-primary" Style="margin-bottom: 20px; height: 2px;" />
+        <MudGrid Spacing="5" Justify="Justify.Center" Class="w-100">
+            @foreach (var skill in ViewModel!.Skills)
+            {
+                <MudItem>
+                    <MudCard Class="h-100 p-4 p-sm-0" Style="width: 200px; border-radius: 10px" >
+                        <MudCardContent>
+                            <MudStack AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" StretchItems="StretchItems.End" Class="h-100 w-100">
+                                @if (!string.IsNullOrEmpty(skill.ImageUrl))
+                                {
+                                    <MudImage Src="@skill.ImageUrl" Height="48" ObjectFit="ObjectFit.Contain" />
+                                }
+
+                                @if (skill.Score.HasValue)
+                                {
+                                    <MudProgressLinear Color="Color.Secondary" Size="Size.Small" Rounded="true" Value="@skill.Score.Value"/>
+                                }
+                                else
+                                {
+                                    <MudProgressLinear Indeterminate="true" Color="Color.Secondary" Size="Size.Small" Rounded="true" />
+                                }
+
+                                <MudText Align="Align.Center" Class="align-content-end" >@skill.SkillName</MudText>
+                            </MudStack>
+                        </MudCardContent>
+                    </MudCard>
+                </MudItem>
+            }
+        </MudGrid>
+    </MudStack>
+</MudContainer>
+
+<MudContainer id="container-projects" Class="w-100" Style="margin-block: 150px;">
+    <MudStack AlignItems="AlignItems.Center">
+        <MudText Typo="Typo.h3" Align="Align.Center">PROJECTS</MudText>
+        <MudElement Class="w-25 mud-primary" Style="margin-bottom: 20px; height: 2px;" />
+        <MudGrid Justify="Justify.Center">
+            @foreach (var project in ViewModel!.Projects)
+            {
+                <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+                    <MudItem>
+                        <MudCard Class="p-0 pointer-events-auto"
+                                 @onmouseover="() => HoverCard(project, true)"
+                                 @onmouseout="() => HoverCard(project, false)">
+                            <MudCardContent Class="p-0 position-relative">
+                                <MudImage Src="@(project.Image ?? string.Empty)" FallbackSrc="images/img_no_image" Height="300" Width="300" ObjectFit="ObjectFit.Cover" />
+
+                                <MudOverlay Visible="@project.IsOverlayVisible" DarkBackground="true" Absolute="true" Class="p-3" AutoClose="true">
+                                    <MudText Typo="Typo.h6">@project.Title</MudText>
+                                    <MudText Typo="Typo.body2">@project.Overview</MudText>
+                                    <MudButton Color="Color.Secondary" Variant="Variant.Outlined" Class="mt-3 mx-auto" Href="@project.ProjectUrl" Target="_blank">View More</MudButton>
+                                </MudOverlay>
+                            </MudCardContent>
+                        </MudCard>
+                    </MudItem>
+                </MudHidden>
+                <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+                    <MudItem>
+                        <MudCard Class="p-0">
+                            <MudCardMedia Image="@(project.Image ?? string.Empty)" Height="300"></MudCardMedia>
+                            <MudCardContent>
+                                <MudText Typo="Typo.h6">@project.Title</MudText>
+                                <MudText Typo="Typo.body2">@project.Overview</MudText>
+                                <MudButton Color="Color.Secondary" Variant="Variant.Outlined" Class="mt-3 mx-auto" Href="@project.ProjectUrl" Target="_blank">View More</MudButton>
+                            </MudCardContent>
+                        </MudCard>
+                    </MudItem>
+                </MudHidden>
+            }
+        </MudGrid>
+    </MudStack>
+</MudContainer>
+
+<MudContainer Class="mud-surface" Style="margin-block: 180px; padding-bottom: 50px;">
+    <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+        <MudStack Class="w-75 mx-auto" AlignItems="AlignItems.Center">
+            <MudText Align="Align.Center" Typo="Typo.h3" Style="margin-top: -30px">EXPERIENCES</MudText>
+            <MudElement Class="w-25 mud-primary" Style="margin-bottom: 20px; height: 2px;" />
+            <MudTimeline TimelinePosition="TimelinePosition.Start" TimelineAlign="TimelineAlign.Start">
+                @foreach (var exp in ViewModel!.Experiences
+                    .Where(e => !string.IsNullOrEmpty(e.StartDate))
+                    .OrderByDescending(e => DateTime.Parse(e.StartDate!)))
+                {
+                    bool isActive = exp.EndDate?.Equals("Present", StringComparison.CurrentCultureIgnoreCase) ?? false;
+                    Color timelineColor = isActive ? Color.Secondary : Color.Default;
+                    Size timelineSize = isActive ? Size.Medium : Size.Small;
+
+                    <MudTimelineItem Color="@timelineColor" Variant="Variant.Outlined" Size="@timelineSize">
+                        <ItemContent>
+                            <MudText Typo="Typo.body1">@($"{exp.StartDate} - {exp.EndDate}")</MudText>
+                            <MudText Typo="Typo.h5" Color="Color.Secondary"><b>@exp.JobPosition</b></MudText>
+                            <MudLink Typo="Typo.h6" Underline="Underline.Hover" Target="_blank" Href="@exp.CompanyUrl">@(exp.CompanyName ?? string.Empty)</MudLink>
+                            <MudText Typo="Typo.body2">@(exp.JobDescription ?? string.Empty)</MudText>
+                        </ItemContent>
+                    </MudTimelineItem>
+                }
+            </MudTimeline>
+        </MudStack>
+    </MudHidden>
+
+    <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+        <MudStack Class="w-100 mx-auto" AlignItems="AlignItems.Center">
+            <MudText Align="Align.Center" Typo="Typo.h3" Style="margin-top: -30px">EXPERIENCES</MudText>
+            <MudElement Class="w-25 mud-primary" Style="margin-bottom: 20px; height: 2px;" />
+            <MudTimeline Class="me-5" TimelinePosition="TimelinePosition.Start" TimelineAlign="TimelineAlign.Start">
+                @foreach (var exp in ViewModel!.Experiences
+                    .Where(e => !string.IsNullOrEmpty(e.StartDate))
+                    .OrderByDescending(e => DateTime.Parse(e.StartDate!)))
+                {
+                    bool isActive = exp.EndDate?.Equals("Present", StringComparison.CurrentCultureIgnoreCase) ?? false;
+                    Color timelineColor = isActive ? Color.Secondary : Color.Default;
+                    Size timelineSize = Size.Small;
+
+                    <MudTimelineItem Color="@timelineColor" Variant="Variant.Outlined" Size="@timelineSize">
+                        <ItemContent>
+                            <MudText Typo="Typo.body1">@($"{exp.StartDate} - {exp.EndDate}")</MudText>
+                            <MudText Typo="Typo.h5" Color="Color.Secondary"><b>@exp.JobPosition</b></MudText>
+                            <MudLink Typo="Typo.h6" Underline="Underline.Hover" Target="_blank" Href="@exp.CompanyUrl">@(exp.CompanyName ?? string.Empty)</MudLink>
+                            <MudText Typo="Typo.body2">@(exp.JobDescription ?? string.Empty)</MudText>
+                        </ItemContent>
+                    </MudTimelineItem>
+                }
+            </MudTimeline>
+        </MudStack>
+    </MudHidden>
+</MudContainer>
+
+@if (ViewModel!.Profile.Email is string email)
+{
+    <MudContainer id="container-contact-me" Style="margin-block: 150px;">
+        <MudStack AlignItems="AlignItems.Center">
+            <MudStack Row="true" Justify="Justify.Center" StretchItems="StretchItems.All" class="w-100">
+                <MudElement Class="w-25 mud-primary my-auto" Style="height: 2px;" />
+                <MudText Class="w-auto mx-2" Align="Align.Center" Typo="Typo.h3">CONTACT ME</MudText>
+                <MudElement Class="w-25 mud-primary my-auto" Style="height: 2px;" />
+            </MudStack>
+            <MudStack AlignItems="AlignItems.Center" Class="py-5">
+                <MudButton Variant="Variant.Filled" Color="Color.Secondary" StartIcon="@Icons.Material.Rounded.Mail" Href="@ViewModel!.SendEmailHrefQuery">@email</MudButton>
+            </MudStack>
+            <MudElement Class="w-100 mud-primary my-auto" Style="height: 2px;" />
+        </MudStack>
+    </MudContainer>
+}
+
+@code {
+    private Models.ProjectModel? _currentHovered;
+
+    private void HoverCard(Models.ProjectModel? project, bool isHovered)
+    {
+        if (project?.IsOverlayVisible ?? false)
+        {
+            return;
+        }
+
+        if (_currentHovered != null)
+        {
+            _currentHovered.IsOverlayVisible = false;
+        }
+
+        if (project != null)
+        {
+            project.IsOverlayVisible = isHovered;
+        }
+
+        _currentHovered = project;
+
+        StateHasChanged();
+    }
+}

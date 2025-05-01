@@ -1,0 +1,24 @@
+﻿@page "/"
+@using Autumn.Wasm.ViewModel
+@using Blazing.Mvvm.Components
+
+@inherits MvvmComponentBase<HomeViewModel>
+
+<PageTitle>Home</PageTitle>
+
+<Autumn.Wasm.Views.Pages.About.Index />
+
+<MudContainer Class="w-100" Style="padding-bottom: 100px;">
+    <MudStack AlignItems="AlignItems.Center">
+        <MudText>Created with:</MudText>
+        <MudStack Row="true" Justify="Justify.Center">
+            <MudIconButton Icon="@Constants.Icons.Blazor" Color="Color.Primary" Variant="Variant.Filled" Href="https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor" Target="_blank"></MudIconButton>
+            <MudIconButton Icon="@Icons.Custom.Brands.MudBlazor" Color="Color.Primary" Variant="Variant.Filled" Href="https://mudblazor.com/" Target="_blank"></MudIconButton>
+            <MudIconButton Icon="@Constants.Icons.Bootstrap" Color="Color.Primary" Variant="Variant.Filled" Href="https://getbootstrap.com/" Target="_blank"></MudIconButton>
+        </MudStack>
+    </MudStack>
+</MudContainer>
+
+<MudScrollToTop>
+    <MudFab Color="Color.Tertiary" StartIcon="@Icons.Material.Rounded.ArrowUpward" />
+</MudScrollToTop>

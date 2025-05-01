@@ -1,15 +1,74 @@
 [
   {
-    "CompanyName": "Dummy company 1",
-    "CompanyUrl": "https://company-1.example.com",
-    "CompanyImageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBm7qM-kLHVkbH0fzej5sHBLwrYTcJqDjwNQ&s",
-    "PositionName": "My position",
-    "Description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "StartDate": "1900/01/30",
-    "EndDate": "Present",
-    "Tools": [
+    "CompanyName": "PT Gameloft Indonesia",
+    "CompanyUrl": null,
+    "JobPosition": "Senior C++ Game Programmer",
+    "JobDescription": "I help the team to implement physics engine for 3D game.",
+    "StartDate": "Sep 2017",
+    "EndDate": "Aug 2022",
+    "Tech": [
       "Visual Studio",
-      "SQL Server"
+      "Tortoise SVN",
+      "Jira",
+      "Confluence",
+      "Jenkins"
+    ]
+  },
+  {
+    "CompanyName": "Formulatrix",
+    "CompanyUrl": null,
+    "JobPosition": "Software Engineer - Backend",
+    "JobDescription": "I worked as a part of Cell-Culture Automation system team.",
+    "StartDate": "Aug 2022",
+    "EndDate": "Feb 2023",
+    "Tech": [
+      "Git",
+      "OpenProject",
+      "PostgreSQL",
+      "Docker",
+      ".NET Core MVC",
+      "xUnit",
+      "Entity Framework Core"
+    ]
+  },
+  {
+    "CompanyName": "Freelance Worker",
+    "CompanyUrl": null,
+    "JobPosition": ".NET Developer",
+    "JobDescription": "I develop applications for both mobile and web platforms based on client needs.",
+    "StartDate": "Apr 2023",
+    "EndDate": "Present",
+    "Tech": [
+      "Git",
+      "Visual Studio",
+      "SQLite",
+      "SQL Server",
+      ".NET MAUI",
+      "Blazor",
+      "Entity Framework Core",
+      "Serilog",
+      "UraniumUI",
+      "Syncfusion"
+    ]
+  },
+  {
+    "CompanyName": "PT Akal Karya Indonesia",
+    "CompanyUrl": null,
+    "JobPosition": "Full-Stack .NET Developer",
+    "JobDescription": "I develop mobile applications for both Android and iOS platforms, as well as web applications, handling both front-end and back-end development.",
+    "StartDate": "Sep 2023",
+    "EndDate": "Present",
+    "Tech": [
+      "Git",
+      "Visual Studio",
+      "SQL Server",
+      "Microsoft Azure AD B2C",
+      "Postman",
+      ".NET Core MVC",
+      ".NET MAUI",
+      ".NET Framework",
+      "VB .NET",
+      "Entity Framework Core"
     ]
   }
 ]

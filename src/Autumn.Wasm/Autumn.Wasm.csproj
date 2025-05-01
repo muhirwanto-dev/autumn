@@ -4,18 +4,19 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyVersion>1.1.1.0</AssemblyVersion>
+    <FileVersion>1.1.1.0501</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Blazing.Mvvm" Version="1.4.0" />
+    <PackageReference Include="BlazorPro.BlazorSize" Version="8.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.5" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.0" />
-    <PackageReference Include="MudBlazor" Version="7.15.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Autumn.Contract\Autumn.Contract.csproj" />
+    <PackageReference Include="MudBlazor" Version="8.1.0" />
+    <PackageReference Include="PublishSPAforGitHubPages.Build" Version="3.0.0" />
+    <PackageReference Include="SingleScope.Common" Version="1.2.2.11" />
   </ItemGroup>
 
 </Project>

@@ -1,8 +1,47 @@
 [
   {
-    "Name": "My skill 1",
-    "Icon": "images/ic_code.svg",
-    "IconUrl": null,
-    "Score": 80
+    "SkillName": "C#",
+    "ImageUrl": "images/skills/img_csharp.png",
+    "Score": 95
+  },
+  {
+    "SkillName": ".NET MAUI",
+    "ImageUrl": "images/skills/img_maui.png",
+    "Score": null
+  },
+  {
+    "SkillName": ".NET MVC",
+    "ImageUrl": "images/skills/img_netcore.png",
+    "Score": null
+  },
+  {
+    "SkillName": "SQL Server",
+    "ImageUrl": "images/skills/img_sqlserver.png",
+    "Score": null
+  },
+  {
+    "SkillName": "SQLite",
+    "ImageUrl": "images/skills/img_sqlite.png",
+    "Score": null
+  },
+  {
+    "SkillName": "Git Source Control",
+    "ImageUrl": "images/skills/img_git.png",
+    "Score": null
+  },
+  {
+    "SkillName": "Entity Framework",
+    "ImageUrl": "images/skills/img_efcore.png",
+    "Score": null
+  },
+  {
+    "SkillName": "NuGet",
+    "ImageUrl": "images/skills/img_nuget.png",
+    "Score": null
+  },
+  {
+    "SkillName": "Firebase",
+    "ImageUrl": "images/skills/img_firebase.png",
+    "Score": null
   }
 ]

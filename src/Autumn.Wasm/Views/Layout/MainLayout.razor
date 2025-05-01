@@ -1,0 +1,64 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider Theme="@(new MudTheme
+{
+    PaletteLight = new PaletteLight
+    {
+        AppbarBackground = "#303030",
+        Background = "#28262C",
+        Primary = "#55AED4",
+        PrimaryContrastText = "#303030",
+        Secondary = "#EFCA08",
+        SecondaryContrastText = "#303030",
+        Tertiary = "#007CB1",
+        TertiaryContrastText = "#FFFFFF",
+        TextPrimary = "#EBEBEB",
+        TextSecondary = "#55AED4",
+        // manually set mud-surface at app.css
+        Surface = "#303030",
+    },
+    Typography = new Typography
+    {
+        Default = new DefaultTypography
+        {
+            FontFamily = [ "Ubuntu", "sans-serif" ],
+        },
+    },
+})" />
+
+<MudSnackbarProvider />
+<MudPopoverProvider />
+<MudDialogProvider FullWidth="true"
+                   MaxWidth="MaxWidth.ExtraSmall"
+                   CloseButton="true"
+                   BackdropClick="false"
+                   NoHeader="true"
+                   Position="DialogPosition.Center"
+                   CloseOnEscapeKey="true" />
+
+<MudLayout>
+    <MudAppBar Class="py-5 gap-5" Elevation="0" Fixed="false">
+        <MudAvatar Size="Size.Medium">
+            <MudImage Src="images/personal_logo.png" />
+        </MudAvatar>
+
+        <MudSpacer />
+
+        <MudStack Row="true">
+            <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+                <MudButton Variant="Variant.Text" Href="/about">About</MudButton>
+                <MudButton Variant="Variant.Text" Href="#container-projects">Projects</MudButton>
+                <MudButton Variant="Variant.Filled" Class="rounded-pill" Color="Color.Secondary" Href="#container-contact-me">Contact Me</MudButton>
+            </MudHidden>
+            <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+                <MudButton Variant="Variant.Text" Size="Size.Small" Href="/about">About</MudButton>
+                <MudButton Variant="Variant.Text" Size="Size.Small" Href="#container-projects">Projects</MudButton>
+                <MudButton Variant="Variant.Filled" Size="Size.Small" Class="rounded-pill" Color="Color.Secondary" Href="#container-contact-me">Contact Me</MudButton>
+            </MudHidden>
+        </MudStack>
+    </MudAppBar>
+
+    <MudMainContent Class="mt-5">
+        @Body
+    </MudMainContent>
+</MudLayout>

@@ -1,6 +1,8 @@
-﻿using Autumn.Wasm.ViewModel;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+﻿using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
+using Autumn.Wasm.Interfaces;
+using Autumn.Wasm.Services;
+using Autumn.Wasm.ViewModel;
 
 namespace Autumn.Wasm
 {
@@ -10,7 +12,11 @@ namespace Autumn.Wasm
         {
             builder.Services.AddMudServices();
 
+            builder.Services.AddTransient<AboutViewModel>();
             builder.Services.AddTransient<HomeViewModel>();
+
+            builder.Services.AddScoped<IDataSourceService, DataSourceService>();
+            builder.Services.AddScoped<IScreenService, ScreenService>();
 
             return builder;
         }

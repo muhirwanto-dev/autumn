@@ -1,13 +1,77 @@
 [
   {
-    "ProjectTitle": "My project 1",
-    "Overview": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    "Description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "Image": null,
-    "ImageUrl": null,
+    "ProjectId": "mob_linea",
+    "Title": "Linea Mobile",
+    "Overview": "Mobile application for goods distribution tracking from warehouse to the shops.",
+    "Description": null,
+    "Image": "images/img_linea_01.png",
     "ProjectUrl": null,
-    "Tools": [
-      "Blazor"
+    "Tech": [
+      ".NET MAUI",
+      "Sunmi V2 Pro SDK",
+      "SQLite",
+      "Dropsync",
+      "Bluetooth LE"
+    ]
+  },
+  {
+    "ProjectId": "mob_mynovel",
+    "Title": "MyNovel Mobile",
+    "Overview": "Mobile application for anyone who loves to read and create novel and share among each other.",
+    "Description": null,
+    "Image": "images/img_mynovel_01.png",
+    "ProjectUrl": null,
+    "Tech": [
+      ".NET MAUI",
+      "Material UI",
+      "Firebase Push Notification",
+      "Firebase Authentication",
+      "Serilog"
+    ]
+  },
+  {
+    "ProjectId": "mob_bitesite",
+    "Title": "Bitesite Mobile",
+    "Overview": "Mobile application as POS terminal to handle restaurant order & payments.",
+    "Description": null,
+    "Image": "images/img_bitesite_01.png",
+    "ProjectUrl": null,
+    "Tech": [
+      ".NET MAUI",
+      "UraniumUI",
+      "Twilio SendGrid",
+      "Serilog"
+    ]
+  },
+  {
+    "ProjectId": "web_ilcontabile",
+    "Title": "Ilcontabile Online Web Dashboard",
+    "Overview": "A dashboard to analyze company cashflow data.",
+    "Description": null,
+    "Image": "images/img_ilcontabile_01.png",
+    "ProjectUrl": null,
+    "Tech": [
+      "Blazor Server App",
+      "Syncfusion",
+      "Microsoft Identity",
+      "Entity Framework Core",
+      "SQL Server",
+      "Dependency Injection",
+      "Serilog"
+    ]
+  },
+  {
+    "ProjectId": "lib_singlescope",
+    "Title": "SingleScope Plugins",
+    "Overview": "A NuGet package of plugins & helpers for .NET.",
+    "Description": null,
+    "Image": "images/img_singlescope_plugins_logo.png",
+    "ProjectUrl": null,
+    "Tech": [
+      ".NET 8",
+      "NuGet",
+      "GitHub",
+      "Git Source Control"
     ]
   }
 ]
